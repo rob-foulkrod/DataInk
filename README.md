@@ -14,3 +14,17 @@ Key Features:
 
 Why DataInk?
 Because data deserves more than spreadsheets. Whether you're pitching to stakeholders or teaching a classroom, DataInk helps you paint with information—turning numbers into narratives and insights into impact.
+
+## Deployment
+
+DataInk is automatically deployed to Azure using GitHub Actions. The workflow performs:
+- Building and testing of the application
+- Deployment to Azure Web App in the DataInkRg1 resource group
+
+### Required GitHub Secrets
+
+To enable the CI/CD pipeline, add these secrets to your repository:
+- `AZURE_WEBAPP_PUBLISH_PROFILE`: The publish profile from your Azure Web App
+- `AZURE_WEBAPP_NAME`: (Optional) The name of your Azure Web App (default: dataink-webapp)
+
+For more details, see the workflow file in `.github/workflows/azure-deploy.yml`.
