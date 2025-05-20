@@ -14,3 +14,22 @@ Key Features:
 
 Why DataInk?
 Because data deserves more than spreadsheets. Whether you're pitching to stakeholders or teaching a classroom, DataInk helps you paint with information—turning numbers into narratives and insights into impact.
+
+## Deployment
+
+This application is automatically deployed to Azure Web Apps using GitHub Actions. The CI/CD pipeline will build, test, and deploy the application whenever changes are pushed to the main branch.
+
+### Required GitHub Secrets
+
+To set up the deployment, configure the following secrets in your GitHub repository:
+
+- `AZURE_WEBAPP_NAME`: The name of your Azure Web App
+- `AZURE_WEBAPP_PUBLISH_PROFILE`: The publish profile XML from your Azure Web App
+
+### How to get the Publish Profile
+
+1. Go to the Azure Portal
+2. Navigate to your Web App
+3. Click on "Get publish profile" in the Overview page
+4. Save the downloaded file
+5. Add the contents of the file as a GitHub secret
