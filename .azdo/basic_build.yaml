@@ -19,7 +19,7 @@ jobs:
   - task: UseDotNet@2
     displayName: Use .NET Core sdk 9.0.300-preview.0.25177.5
     inputs:
-      version: 9.0.300-preview
+      version: 9.0.300-preview-*
       includePreviewVersions: true
   - task: DotNetCoreCLI@2
     displayName: Restore
