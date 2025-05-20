@@ -33,3 +33,11 @@ To set up the deployment, configure the following secrets in your GitHub reposit
 3. Click on "Get publish profile" in the Overview page
 4. Save the downloaded file
 5. Add the contents of the file as a GitHub secret
+
+### Environment Configuration
+
+The deployment workflow automatically handles environment-specific configurations:
+
+- A production-specific `appsettings.Production.json` is included in the deployment
+- The workflow can be extended to include additional environment variables and configuration settings
+- For sensitive settings, use GitHub Secrets and Environment Variables in Azure Web App configuration

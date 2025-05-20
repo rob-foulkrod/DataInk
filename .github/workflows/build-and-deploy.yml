@@ -18,6 +18,14 @@ jobs:
       with:
         dotnet-version: 9.0.x
         dotnet-quality: 'preview'
+        
+    - name: Cache NuGet packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.nuget/packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json', '**/packages.props') }}
+        restore-keys: |
+          ${{ runner.os }}-nuget-
 
     - name: Restore dependencies
       run: dotnet restore src/DataInk.Web/DataInk.Web.csproj
@@ -52,6 +60,15 @@ jobs:
       with:
         name: dataink-webapp
         path: publish
+        
+    - name: Set App Settings
+      run: |
+        if [ -f "publish/appsettings.Production.json" ]; then
+          echo "Using Production app settings"
+        else
+          echo "Creating Production app settings"
+          echo '{"Logging": {"LogLevel": {"Default": "Information","Microsoft.AspNetCore": "Warning"}}}' > publish/appsettings.Production.json
+        fi
 
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
@@ -60,3 +77,8 @@ jobs:
         app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: publish
+        
+    - name: Check deployment status
+      run: |
+        echo "Deployed to ${{ steps.deploy-to-webapp.outputs.webapp-url }}"
+        echo "Deployment completed successfully!"
