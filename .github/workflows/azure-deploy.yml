@@ -40,13 +40,13 @@ jobs:
 
     - name: Publish
       run: dotnet publish --configuration Release --no-build --output ${{ env.PUBLISH_DIRECTORY }}
-      working-directory: ${{ env.WORKING_DIRECTORY }}
+      working-directory: ${{ env.WORKING_DIRECTORY }} 
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
         name: app-publish
-        path: ${{ env.PUBLISH_DIRECTORY }}
+        path: './src/publish/'
         retention-days: 1
 
   deploy:
