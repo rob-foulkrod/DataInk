@@ -5,6 +5,16 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'Production'
+        type: choice
+        options:
+          - Production
+          - Staging
 
 jobs:
   build:
@@ -49,9 +59,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
     environment:
-      name: 'Production'
+      name: ${{ github.event.inputs.environment || 'Production' }}
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:

@@ -19,6 +19,8 @@ Because data deserves more than spreadsheets. Whether you're pitching to stakeho
 
 This application is automatically deployed to Azure Web Apps using GitHub Actions. The CI/CD pipeline will build, test, and deploy the application whenever changes are pushed to the main branch.
 
+You can also manually trigger the workflow from the GitHub Actions tab by selecting the "Build and Deploy" workflow and clicking "Run workflow".
+
 ### Required GitHub Secrets
 
 To set up the deployment, configure the following secrets in your GitHub repository:
