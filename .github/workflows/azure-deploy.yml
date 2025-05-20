@@ -46,7 +46,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: app-publish
-        path: ${{ env.WORKING_DIRECTORY }}/${{ env.PUBLISH_DIRECTORY }}
+        path: ${{ env.PUBLISH_DIRECTORY }}
         retention-days: 1
 
   deploy:
